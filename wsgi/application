@@ -1,4 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 
 virtenv = os.environ['APPDIR'] + '/virtenv/'
@@ -11,16 +13,24 @@ except IOError:
 #
 # IMPORTANT: Put any additional includes below this line.  If placed above this
 # line, it's possible required libraries won't be in your searchable path
-# 
+#
 import web
+from web.contrib.template import render_mako
 
 urls = (
   '/', 'index'
 )
 
+
+render = render_mako(
+        directories=['views'],
+        input_encoding='utf-8',
+        output_encoding='utf-8',
+        )
+
 class index:
     def GET(self):
-        return "Hello, world...  Running on web.py version: " + web.__version__
+         return render.index()
 
 application = web.application(urls, globals()).wsgifunc()
 
