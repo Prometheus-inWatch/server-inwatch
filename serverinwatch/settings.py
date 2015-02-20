@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'quitsmoking'
+    'serverinwatch'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,23 +60,17 @@ WSGI_APPLICATION = 'serverinwatch.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('BD', ''),
-        'USER': os.getenv('USERBD', ''),
-        'PASSWORD': os.getenv('PASS', ''), 
+        'NAME': 'app',
+        'USER':  os.environ.get('USERBD'),
+        'PASSWORD':  os.environ.get('PASS'),
+        'HOST': OPENSHIFT_app_DB_HOST
     }
 }
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-#    }
-#}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
 
