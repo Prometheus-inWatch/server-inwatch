@@ -1,6 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
-
 import os
 
 virtenv = os.environ['APPDIR'] + '/virtenv/'
@@ -10,27 +9,25 @@ try:
     execfile(virtualenv, dict(__file__=virtualenv))
 except IOError:
     pass
-#
-# IMPORTANT: Put any additional includes below this line.  If placed above this
-# line, it's possible required libraries won't be in your searchable path
-#
+
 import web
 from web.contrib.template import render_mako
 
 urls = (
-  '/', 'index'
-)
-
-
+        '/', 'index'
+        )
 render = render_mako(
-        directories=['views'],
+        directories=[os.environ['OPENSHIFT_REPO_DIR']+'/wsgi/templates'],
         input_encoding='utf-8',
         output_encoding='utf-8',
         )
 
+
+
 class index:
     def GET(self):
-         return render.index()
+        web.header('Content-Type','text/html; charset=utf-8', unique=True) 
+        return render.index()
 
 application = web.application(urls, globals()).wsgifunc()
 

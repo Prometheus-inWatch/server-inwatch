@@ -6,5 +6,5 @@ setup(name='openshift-webpy-example',
       author='Evan Hazlett',
       author_email='ejhazlett@gmail.com',
       url='http://www.python.org/sigs/distutils-sig/',
-      install_requires=['web.py'],
+      install_requires=['web.py','Mako'],
      )
