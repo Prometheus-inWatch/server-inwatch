@@ -4,6 +4,8 @@
 import web
 from web import form
 from web.contrib.template import render_mako
+from datetime import datetime
+from dateutil import parser
 
 import model
 
@@ -52,7 +54,7 @@ class user:
     def POST(self):
         i = web.input()
         email = str(i.email)
-        model.users.user_list.append(model.User(email, int(i.cigarsPerDay), int(i.cigarsPerPacket), float(i.pricerPerPacket), str(i.stopSmokingDate)))
+        model.users.user_list.append(model.User(email, int(i.cigarsPerDay), int(i.cigarsPerPacket), float(i.pricePerPacket), parser.parse(i.stopSmokingDate)))
 
 class log:
 
