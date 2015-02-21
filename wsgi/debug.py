@@ -54,15 +54,9 @@ class user:
     def POST(self):
         i = web.input()
         email = str(i.email)
-        model.users.user_list.append(model.User(email, int(i.cigarsPerDay), int(i.cigarsPerPacket), float(i.pricePerPacket), parser.parse(i.stopSmokingDate)))
+        model.users.insert_user(model.User(email, int(i.cigarsPerDay), int(i.cigarsPerPacket), float(i.pricePerPacket), parser.parse(i.stopSmokingDate)))
 
 class log:
-
-    def GET(self):
-        '''Process GET request'''
-        web.header('Content-Type','application/json; charset=utf-8', unique=True)
-        content = model.log_to_json(*model.get_log())
-        return render.log(content=content)
     
     def POST(self):
         i = web.input()

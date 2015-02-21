@@ -8,7 +8,26 @@ from datetime import datetime
 from bdinterface import BDInterface
 
 
-#bd = BDInterface()
+class UserManagerDB(object):
+    
+    def __init__(self):
+        self.bd = BDInterface()
+    
+    def get_user(self, email):
+        try:
+            self.bd.connect()
+            u = self.bd.getUsuario(email)
+            if len(u) > 0:
+                return User(*u[1:])
+        finally:
+            self.bd.disconnect()
+    def insert_user(self, user):
+        try:
+            self.bd.connect()
+            self.bd.insertarUsuario(user.email,user.cigarsPerDay,user.cigarsPerPacket,user.pricePerPacket,user.stopSmokingDate,user.totalUnsmokedCigars,
+                            user.totalMoneySaved,user.totalTimeSaved,user.totalDaysClean)
+        finally:
+            self.bd.disconnect()
 
 
 class UserManager(object):
@@ -21,27 +40,29 @@ class UserManager(object):
             if user.email == email:
                 return user
         return None
+    def insert_user(user):
+        self.user_list.append(user)
 
 
 class User(object):
     
-    def __init__(self, email, cigarsPerDay,  cigarsPerPacket, pricePerPacket, stopSmokingDate):
-        self.userId = 0
+    def __init__(self, email, cigarsPerDay,  cigarsPerPacket, pricePerPacket, stopSmokingDate, totalUnsmokedCigars=20, totalMoneySaved=44.90, totalTimeSaved=20, totalDaysClean =20):
+        self.userId = 0        
         self.email = email
         self.cigarsPerDay = cigarsPerDay
         self.cigarsPerPacket = cigarsPerPacket
         self.pricePerPacket = pricePerPacket
         self.stopSmokingDate = stopSmokingDate
-        self.totalUnsmokedCigars=20
-        self.totalMoneySaved=44.90
-        self.totalTimeSaved=20
-        self.totalDaysClean =20
+        self.totalUnsmokedCigars = totalUnsmokedCigars
+        self.totalMoneySaved = totalMoneySaved
+        self.totalTimeSaved = totalTimeSaved
+        self.totalDaysClean =totalDaysClean
 
     def __userget_to_json (self,userId,cigarsPerday,cigarsPerPacket,pricerPerPacket,stopSmokingDate,totalUnsmokedCigars,totalMoneySaved,totalTimeSaved,totalDaysClean):
         return '\
 {\
 "userId": '+str(userId)+',\
-"cigarsPerday": '+str(cigarsPerday)+',\
+"cigarsPerDay": '+str(cigarsPerday)+',\
 "cigarsPerPacket": '+str(cigarsPerPacket)+',\
 "pricerPerPacket": '+str(pricerPerPacket)+',\
 "stopSmokingDate": "'+str(stopSmokingDate)+'",\
@@ -88,7 +109,7 @@ def get_tips():
 
 def log_to_json(_id, userId, day, cigarsSmoked, ok):
     return '{\
-"id": '+str(_id)+'\
+"id": '+str(_id)+',\
 "userId": '+str(userId)+',\
 "is_ok": '+str(ok).lower()+',\
 "day": "'+day+'",\
@@ -110,4 +131,4 @@ def get_log():
     return (_id, userId, day, cigarsSmoked, ok)
 
 
-users = UserManager()
+users = UserManagerDB()
