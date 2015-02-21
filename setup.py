@@ -1,10 +1,10 @@
 from setuptools import setup
 
-setup(name='openshift-webpy-example',
+setup(name='server-side',
       version='1.0',
-      description='OpenShift App',
-      author='Evan Hazlett',
-      author_email='ejhazlett@gmail.com',
-      url='http://www.python.org/sigs/distutils-sig/',
+      description='Despliegue ',
+      author='Israel Blancas',
+      author_email='iblancasa@gmail.com',
+      url='http://prometheusinwatch-iblancasa.rhcloud.com/',
       install_requires=['web.py','Mako'],
      )
