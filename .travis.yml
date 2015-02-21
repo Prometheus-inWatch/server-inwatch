@@ -9,7 +9,7 @@ deploy:
   user: iblancasa@gmail.com
   password:
     secure: irAYEA/My1p+xcJB54WLwY8PWIZ1SQceA/p0pnMfuoupgc0wuEZNA4YZ4Vessndp/ExDtwv+cXxcZ9eMJ8dc5vMd0T0iqPm/UCT1Mgchfn4AlkzHKi25T+B0EbfNWzvQNCrsfWzXMA9DVzqGJWuXb5WKREZbqRdmp2kI1Ql3QJo=
-  app: server-inwatch
+  app: prometheusinwatch
   domain: iblancasa
   on:
     repo: Prometheus-inWatch/server-inwatch
