@@ -3,6 +3,61 @@
 
 from __future__ import print_function
 
+
+class UserManager(object):
+
+    def __init__(self):
+        self.user_list = []
+    
+    def  get_user(self,email):
+        for user in self.user_list:
+            if user.email == email:
+                return user
+        return None
+
+
+class User(object):
+    
+    def __init__(self, email, cigarsPerDay,  cigarsPerPacket, pricePerPacket, stopSmokingDate):
+        self.userId = 0
+        self.email = email
+        self.cigarsPerDay = cigarsPerDay
+        self.cigarsPerPacket = cigarsPerPacket
+        self.pricePerPacket = pricePerPacket
+        self.stopSmokingDate = stopSmokingDate
+        self.totalUnsmokedCigars=0
+        self.totalMoneySaved=0
+        self.totalTimeSaved=0
+        self.totalDaysClean=0
+
+    def __userget_to_json (self,userId,cigarsPerday,cigarsPerPacket,pricerPerPacket,stopSmokingDate,totalUnsmokedCigars,totalMoneySaved,totalTimeSaved,totalDaysClean):
+        return '\
+{\
+"userId": '+str(userId)+',\
+"cigarsPerday": '+str(cigarsPerday)+',\
+"cigarsPerPacket": '+str(cigarsPerPacket)+',\
+"pricerPerPacket": '+str(pricerPerPacket)+',\
+"stopSmokingDate": "'+stopSmokingDate+'",\
+"totalUnsmokedCigars": '+str(totalUnsmokedCigars)+',\
+"totalMoneySaved": '+str(totalMoneySaved)+',\
+"totalTimeSaved": '+str(totalTimeSaved)+',\
+"totalDaysClean": '+str(totalDaysClean)+'\
+} '
+
+    def to_json(self):
+        return self.__userget_to_json(self.userId, self.cigarsPerDay, self.cigarsPerPacket, self.pricePerPacket, self.stopSmokingDate, self.totalUnsmokedCigars, self.totalMoneySaved, self.totalTimeSaved, self.totalDaysClean)
+
+    def __eq__(self,other):
+        try:
+            if self.email == other.email:
+                return True
+            else:
+                return False
+        except:
+            return False
+    
+    def log(self):
+        pass
        
 def tips_to_json(tipId, text):
     '''Converts tip to json.
@@ -103,3 +158,6 @@ def get_log():
     ok=True
  
     return (_id, userId, day, cigarsSmoked, ok)
+
+
+users = UserManager()
