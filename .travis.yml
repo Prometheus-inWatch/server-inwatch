@@ -1,16 +1,15 @@
 language: python
 python:
-  - "2.7"
-
+- '2.7'
 install:
-  - pip install .
+- pip install .
 script: date
 deploy:
   provider: openshift
   user: iblancasa@gmail.com
   password:
-    secure: QH+5fB99tRLP4mC6zllJdbbvFvtu22iG1yomuZ+WGplN3pBsVRYPGXRat3xFhsRB5h7BzEs8YS4t0R2FTyt5Elh5/xY7KM2qIqK8iPQ07iavgcxyEORxyUh3SVLskIsrat4a66MoW4CDDY8elggmGA+Wmv2Hl0R+wXTz2c/It2w=
-  app: prometheusinwatch
+    secure: irAYEA/My1p+xcJB54WLwY8PWIZ1SQceA/p0pnMfuoupgc0wuEZNA4YZ4Vessndp/ExDtwv+cXxcZ9eMJ8dc5vMd0T0iqPm/UCT1Mgchfn4AlkzHKi25T+B0EbfNWzvQNCrsfWzXMA9DVzqGJWuXb5WKREZbqRdmp2kI1Ql3QJo=
+  app: server-inwatch
   domain: iblancasa
   on:
     repo: Prometheus-inWatch/server-inwatch
