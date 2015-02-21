@@ -32,3 +32,33 @@ class BDInterface:
         consejos = cursor.fetchall()
         numero = random.randint(0, len(consejos)-1)
         return consejos[numero]
+
+
+
+    def insertarUsuario(self, email,cigarsPerDay,cigarsPerPacket,pricePerPacket,stopSmokingDate,totalUnsmokedCigars,
+    totalMoneySaved,totalTimeSaved,totalDaysClean):
+        cursor = self.conexion.cursor()
+
+        query = "INSERT INTO user (email,cigarsPerDay,cigarsPerPacket,pricePerPacket,stopSmokingDate,\
+        totalUnsmokedCigars, totalMoneySaved, totalTimeSaved, totalDaysClean)\
+        VALUES ( \'"+email+"\', \'"+str(cigarsPerDay)+"\', \'"+str(cigarsPerPacket)+"\', \
+        \'"+str(pricePerPacket)+"\', \'"+str(stopSmokingDate)+"\', \'"+str(totalUnsmokedCigars)+"\', \
+        \'"+str(totalMoneySaved)+"\', \'"+str(totalTimeSaved)+"\', \'"+str(totalDaysClean)+"\')"
+
+        try:
+            cursor.execute(query)
+            self.conexion.commit()
+        except:
+            self.conexion.rollback()
+
+
+
+    def getUsuario(self,email):
+        cursor = self.conexion.cursor()
+        query = "SELECT * FROM user WHERE email like \'"+email+"\'"
+        cursor.execute(query)
+        usuario = cursor.fetchall()
+        return usuario[0]
+
+
+    
