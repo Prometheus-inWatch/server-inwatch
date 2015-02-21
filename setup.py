@@ -6,5 +6,5 @@ setup(name='server-side',
       author='Israel Blancas',
       author_email='iblancasa@gmail.com',
       url='http://prometheusinwatch-iblancasa.rhcloud.com/',
-      install_requires=['web.py','Mako'],
+      install_requires=['web.py','Mako', 'python-dateutil'],
      )
