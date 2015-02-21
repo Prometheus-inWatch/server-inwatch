@@ -13,6 +13,7 @@ urls = (
         '/user', 'user',
         '/log', 'log',
         )
+        
 render = render_mako(
         directories=['templates'],
         input_encoding='utf-8',
