@@ -1,10 +1,11 @@
 -- phpMyAdmin SQL Dump
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.5.119.2:3306
--- Tiempo de generación: 21-02-2015 a las 09:59:31
--- Versión del servidor: 5.5.41
--- Versión de PHP: 5.3.3
+-- Servidor: localhost
+-- Tiempo de generación: 21-02-2015 a las 13:36:24
+-- Versión del servidor: 5.5.41-0ubuntu0.14.04.1
+-- Versión de PHP: 5.5.9-1ubuntu4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -16,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `prometheusinwatch`
+-- Base de datos: `inwatch`
 --
 
 -- --------------------------------------------------------
@@ -26,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `log` (
-  `id` float NOT NULL,
+  `id` float NOT NULL AUTO_INCREMENT,
   `user` float NOT NULL,
   `is_ok` tinyint(1) NOT NULL,
   `day` date NOT NULL,
@@ -36,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `savedTime` float NOT NULL,
   PRIMARY KEY (`id`,`user`),
   KEY `usuario` (`user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -45,10 +46,16 @@ CREATE TABLE IF NOT EXISTS `log` (
 --
 
 CREATE TABLE IF NOT EXISTS `tips` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Volcado de datos para la tabla `tips`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -57,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `tips` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` float NOT NULL,
+  `id` float NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
   `cigarsPerDay` int(11) NOT NULL,
   `cigarsPerPacket` int(11) NOT NULL,
@@ -69,7 +76,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `totalDaysClean` float NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
 
 --
 -- Restricciones para tablas volcadas
