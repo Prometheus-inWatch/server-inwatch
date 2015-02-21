@@ -61,4 +61,13 @@ class BDInterface:
         return usuario[0]
 
 
-    
+    def insertLog(self,user,is_ok,day,smokedCigars,savedMoney,unsmokedCigars,savedTime):
+        cursor = self.conexion.cursor()
+
+        query = "INSERT INTO log (user, is_ok,day, smokedCigars, savedMoney, unsmokedCigars, \
+         savedTime) VALUES (\'"+str(user)+"\', \'"+str(is_ok)+"\', \'"+str(day)+"\', \'"+str(smokedCigars)+"\', \'"+str(savedMoney)+"\', \'"+str(unsmokedCigars)+"\', \'"+str(savedTime)+"\')"
+        try:
+            cursor.execute(query)
+            self.conexion.commit()
+        except:
+            self.conexion.rollback()
