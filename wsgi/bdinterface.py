@@ -2,7 +2,7 @@
 
 import MySQLdb
 from bd import *
-
+import random
 
 class BDInterface:
     conexion = None
@@ -23,4 +23,12 @@ class BDInterface:
             self.conexion.commit()
         except:
             self.conexion.rollback()
-        print query
+
+
+    def getConsejo(self):
+        cursor = self.conexion.cursor()
+        query = "SELECT * FROM tips"
+        cursor.execute(query)
+        consejos = cursor.fetchall()
+        numero = random.randint(0, len(consejos)-1)
+        return consejos[numero]
